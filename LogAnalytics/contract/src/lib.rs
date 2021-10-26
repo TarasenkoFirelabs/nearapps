@@ -1,6 +1,6 @@
 use near_sdk::borsh::{self, BorshDeserialize, BorshSerialize};
 use near_sdk::{env, near_bindgen, PanicOnDefault};
-use std::{fmt, str};
+use std::str;
 
 extern crate base64;
 
@@ -30,16 +30,22 @@ impl Call {
     	format!("{}_{}_{}", encode(self.app_id.clone()), encode(self.action_id.clone()), encode(self.user.clone()))	
     }
 
-    pub fn blockchain_analytics(encoded: String) -> Self {
-	let call_encoded: Vec<&str> = encoded.split('_').collect();
-	let app_id_encoded = call_encoded[0];
-	let app_id = str::from_utf8(&decode(app_id_encoded).unwrap()[..]).unwrap().to_string();
-	let action_id_encoded = call_encoded[1];
-        let action_id = str::from_utf8(&decode(action_id_encoded).unwrap()[..]).unwrap().to_string();
-	let user_encoded = call_encoded[2];
-        let user = str::from_utf8(&decode(user_encoded).unwrap()[..]).unwrap().to_string();
-	env::log_str("this is a log");
-	    Call {app_id, action_id, user}
+    pub fn set_blockchain_analytics(encoded: String) -> Self {
+        let call_encoded: Vec<&str> = encoded.split('_').collect();
+        let app_id_encoded = call_encoded[0];
+        let app_id = str::from_utf8(&decode(app_id_encoded).unwrap()[..]).unwrap().to_string();
+        let action_id_encoded = call_encoded[1];
+            let action_id = str::from_utf8(&decode(action_id_encoded).unwrap()[..]).unwrap().to_string();
+        let user_encoded = call_encoded[2];
+            let user = str::from_utf8(&decode(user_encoded).unwrap()[..]).unwrap().to_string();
+
+        env::log_str(&encoded);
+            Call {app_id, action_id, user}
+    }
+
+    pub fn get_blockchain_analytics(&self) -> &Self {
+        env::log_str("Your call is returned");
+        &self
     }
 }
 
@@ -71,7 +77,7 @@ mod tests {
 	let action_id = "actionid".to_string();
 	let user = "user123".to_string();
 	let api_call = Call{app_id, action_id, user};
-	let call_decoded = Call::blockchain_analytics(api_call.generate_string());
+	let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
 	assert_eq!(api_call.app_id, call_decoded.app_id);
 	assert_eq!(api_call.action_id, call_decoded.action_id);
 	assert_eq!(api_call.user, call_decoded.user);
@@ -83,7 +89,7 @@ mod tests {
         let action_id =  "SomeaccountABC6789".to_string();
         let user = "123Someuser".to_string();
         let api_call = Call{app_id, action_id, user};
-        let call_decoded = Call::blockchain_analytics(api_call.generate_string());
+        let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
         assert_eq!(api_call.app_id, call_decoded.app_id);
         assert_eq!(api_call.action_id, call_decoded.action_id);
         assert_eq!(api_call.user, call_decoded.user);
@@ -92,7 +98,7 @@ mod tests {
     #[test]
     fn encoding_3() {
         let api_call = Call::new();
-        let call_decoded = Call::blockchain_analytics(api_call.generate_string());
+        let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
         assert_eq!(api_call.app_id, call_decoded.app_id);
         assert_eq!(api_call.action_id, call_decoded.action_id);
         assert_eq!(api_call.user, call_decoded.user);
