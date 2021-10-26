@@ -19,11 +19,11 @@ pub struct Call {
 impl Call {
     #[init]
     pub fn new() -> Self {
-	Self {
-	    app_id: String::new(),
-	    action_id: String::new(),
-	    user: String::new(),
-	}    
+        Self {
+            app_id: String::new(),
+            action_id: String::new(),
+            user: String::new(),
+        }
     }
 
     pub fn generate_string(&self) -> String {
@@ -39,7 +39,7 @@ impl Call {
 	let user_encoded = call_encoded[2];
         let user = str::from_utf8(&decode(user_encoded).unwrap()[..]).unwrap().to_string();
 	env::log_str("this is a log");
-	Call {app_id, action_id, user}	
+	    Call {app_id, action_id, user}
     }
 }
 
@@ -68,7 +68,7 @@ mod tests {
     #[test]
     fn encoding_1() {
 	let app_id = "appid".to_string();
-	let action_id =  "actionid".to_string();
+	let action_id = "actionid".to_string();
 	let user = "user123".to_string();
 	let api_call = Call{app_id, action_id, user};
 	let call_decoded = Call::blockchain_analytics(api_call.generate_string());
