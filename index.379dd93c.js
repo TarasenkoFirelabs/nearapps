@@ -25185,7 +25185,7 @@ class FormAnalitics {
     }
 }
 exports.default = FormAnalitics;
-Form.propTypes = {
+FormAnalitics.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     currentUser: PropTypes.shape({
         accountId: PropTypes.string.isRequired,
