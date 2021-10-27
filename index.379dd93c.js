@@ -25072,7 +25072,6 @@ const Form = ({ onSubmit , currentUser , analitics , disabled  })=>{
                     ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                    className: "highlight",
                     __source: {
                         fileName: "src/components/Form.jsx",
                         lineNumber: 22
@@ -25080,20 +25079,20 @@ const Form = ({ onSubmit , currentUser , analitics , disabled  })=>{
                     __self: undefined,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "user_name",
+                            htmlFor: "app_id",
                             __source: {
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 23
                             },
                             __self: undefined,
-                            children: "User name"
+                            children: "App #"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
                             autoComplete: "off",
                             autoFocus: true,
-                            name: "user_name",
-                            id: "user_name",
-                            value: formData.user_name,
+                            name: "app_id",
+                            id: "app_id",
+                            value: formData.app_id,
                             onChange: handleChangeValue,
                             required: true,
                             __source: {
@@ -25112,19 +25111,20 @@ const Form = ({ onSubmit , currentUser , analitics , disabled  })=>{
                     __self: undefined,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "app_id",
+                            htmlFor: "action_id",
                             __source: {
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 34
                             },
                             __self: undefined,
-                            children: "App #"
+                            children: "Action #"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
                             autoComplete: "off",
-                            name: "app_id",
-                            id: "app_id",
-                            value: formData.app_id,
+                            autoFocus: true,
+                            name: "action_id",
+                            id: "action_id",
+                            value: formData.action_id,
                             onChange: handleChangeValue,
                             required: true,
                             __source: {
@@ -25136,31 +25136,33 @@ const Form = ({ onSubmit , currentUser , analitics , disabled  })=>{
                     ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                    className: "highlight",
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 43
+                        lineNumber: 44
                     },
                     __self: undefined,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "action_id",
+                            htmlFor: "user_name",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 44
+                                lineNumber: 45
                             },
                             __self: undefined,
-                            children: "Action #"
+                            children: "User name"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
                             autoComplete: "off",
-                            name: "action_id",
-                            id: "action_id",
-                            value: formData.action_id,
+                            autoFocus: true,
+                            name: "user_name",
+                            id: "user_name",
+                            value: formData.user_name,
                             onChange: handleChangeValue,
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 45
+                                lineNumber: 46
                             },
                             __self: undefined
                         })
@@ -25171,7 +25173,7 @@ const Form = ({ onSubmit , currentUser , analitics , disabled  })=>{
                     onClick: handleSubmit,
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 53
+                        lineNumber: 55
                     },
                     __self: undefined,
                     children: "Submit"
