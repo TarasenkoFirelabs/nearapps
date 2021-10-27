@@ -22795,7 +22795,7 @@ var _s = $RefreshSig$();
 ///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     _s();
-    const [user_name_value, app_id_value, action_id_value] = _react.useState([
+    const [user_name, app_id, action_id] = _react.useState([
         currentUser ? currentUser.accountId : 'SuperHero',
         'Example App',
         'Example Action'
@@ -22838,21 +22838,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 60
+            lineNumber: 59
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 61
+                    lineNumber: 60
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 62
+                            lineNumber: 61
                         },
                         __self: undefined,
                         children: "NEAR Analitic Logs"
@@ -22861,7 +22861,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 64
+                            lineNumber: 63
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22869,7 +22869,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 65
+                            lineNumber: 64
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22882,20 +22882,20 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 analitics: (user_name.value, app_id.value, action_id.value),
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 69
+                    lineNumber: 68
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 70
+                    lineNumber: 69
                 },
                 __self: undefined
             })
         ]
     }));
 };
-_s(App, "dxMD7cvhNrwbLU/lR/IYml/R4rI=");
+_s(App, "RD97neyXCDHDyHnAZiImp1QLrAI=");
 _c = App;
 App.propTypes = {
     contract: _propTypesDefault.default.shape({
@@ -25042,26 +25042,34 @@ class Form {
     constructor({ onSubmit , currentUser , analitics  }){
         this.state = analitics;
     }
+    useState(analitics) {
+        this.state = analitics;
+        user_name.value = analitics.user_name;
+        app_id.value = analitics.app_id;
+        action_id.value = analitics.action_id;
+        fieldset.disabled = false;
+        user_name.focus();
+    }
     render() {
         return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
             onSubmit: onSubmit,
             __source: {
                 fileName: "src/components/Form.jsx",
-                lineNumber: 11
+                lineNumber: 22
             },
             __self: this,
             children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
                 id: "fieldset",
                 __source: {
                     fileName: "src/components/Form.jsx",
-                    lineNumber: 12
+                    lineNumber: 23
                 },
                 __self: this,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                         __source: {
                             fileName: "src/components/Form.jsx",
-                            lineNumber: 13
+                            lineNumber: 24
                         },
                         __self: this,
                         children: [
@@ -25074,7 +25082,7 @@ class Form {
                         className: "highlight",
                         __source: {
                             fileName: "src/components/Form.jsx",
-                            lineNumber: 14
+                            lineNumber: 25
                         },
                         __self: this,
                         children: [
@@ -25082,7 +25090,7 @@ class Form {
                                 htmlFor: "user_name",
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 15
+                                    lineNumber: 26
                                 },
                                 __self: this,
                                 children: "User name"
@@ -25095,7 +25103,7 @@ class Form {
                                 required: true,
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 16
+                                    lineNumber: 27
                                 },
                                 __self: this
                             })
@@ -25104,7 +25112,7 @@ class Form {
                     /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                         __source: {
                             fileName: "src/components/Form.jsx",
-                            lineNumber: 23
+                            lineNumber: 34
                         },
                         __self: this,
                         children: [
@@ -25112,7 +25120,7 @@ class Form {
                                 htmlFor: "app_id",
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 24
+                                    lineNumber: 35
                                 },
                                 __self: this,
                                 children: "App #"
@@ -25125,7 +25133,7 @@ class Form {
                                 required: true,
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 25
+                                    lineNumber: 36
                                 },
                                 __self: this
                             })
@@ -25134,7 +25142,7 @@ class Form {
                     /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                         __source: {
                             fileName: "src/components/Form.jsx",
-                            lineNumber: 32
+                            lineNumber: 43
                         },
                         __self: this,
                         children: [
@@ -25142,7 +25150,7 @@ class Form {
                                 htmlFor: "action_id",
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 33
+                                    lineNumber: 44
                                 },
                                 __self: this,
                                 children: "Action #"
@@ -25155,7 +25163,7 @@ class Form {
                                 required: true,
                                 __source: {
                                     fileName: "src/components/Form.jsx",
-                                    lineNumber: 34
+                                    lineNumber: 45
                                 },
                                 __self: this
                             })
@@ -25165,7 +25173,7 @@ class Form {
                         type: "submit",
                         __source: {
                             fileName: "src/components/Form.jsx",
-                            lineNumber: 41
+                            lineNumber: 52
                         },
                         __self: this,
                         children: "Submit"
