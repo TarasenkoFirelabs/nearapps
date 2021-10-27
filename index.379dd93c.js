@@ -22787,35 +22787,40 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _bigJs = require("big.js");
 var _bigJsDefault = parcelHelpers.interopDefault(_bigJs);
-var _formAnalitics = require("./components/FormAnalitics");
-var _formAnaliticsDefault = parcelHelpers.interopDefault(_formAnalitics);
+var _form = require("./components/Form");
+var _formDefault = parcelHelpers.interopDefault(_form);
 var _signIn = require("./components/SignIn");
 var _signInDefault = parcelHelpers.interopDefault(_signIn);
-var _s = $RefreshSig$();
-const BOATLOAD_OF_GAS = _bigJsDefault.default(3).times(10 ** 13).toFixed();
+///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 const App = ({ contract , currentUser , nearConfig , wallet  })=>{
-    _s();
-    const [messages, setAnalitics] = _react.useState([]);
-    _react.useEffect(()=>{
-        // TODO: don't just fetch once; subscribe!
-        contract.getMessages().then(setMessages);
-    }, []);
+    //const [messages, set_analitics] = useState([]);
+    // useEffect(() => {
+    //   // TODO: don't just fetch once; subscribe!
+    //   contract.getMessages().then(setMessages);
+    // }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
-        const { fieldset , message , donation  } = e.target.elements;
-        fieldset.disabled = true;
-        // TODO: optimistically update page with new message,
-        // update blockchain data in background
-        // add uuid to each message, so we know which one is already known
-        contract.setAnalytics({
-            text: message.value
-        }, BOATLOAD_OF_GAS, _bigJsDefault.default(donation.value || '0').times(10 ** 24).toFixed()).then(()=>{
-            contract.getAnalytics().then((log)=>{
-                setMessages(messages);
-                fieldset.disabled = false;
-                message.focus();
-            });
-        });
+        console.log('Will set analitics into blockchain: ' + undefined.state);
+    // contract.set_analytics(this.state);
+    // let record = contract.get_analytics();
+    // console.log('Get from blockchain: ' + record);
+    // alert(record);
+    // const { fieldset, message, donation } = e.target.elements;
+    // fieldset.disabled = true;
+    // // TODO: optimistically update page with new message,
+    // // update blockchain data in background
+    // // add uuid to each message, so we know which one is already known
+    // contract.setAnalytics(
+    //   { text: message.value },
+    //   BOATLOAD_OF_GAS,
+    //   Big(donation.value || '0').times(10 ** 24).toFixed()
+    // ).then(() => {
+    //   contract.getAnalytics().then(log => {
+    //     setMessages(messages);
+    //     fieldset.disabled = false;
+    //     message.focus();
+    //   });
+    // });
     };
     const signIn = ()=>{
         wallet.requestSignIn(nearConfig.contractName, 'NEAR Aalitics Log');
@@ -22827,21 +22832,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 55
+            lineNumber: 62
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 56
+                    lineNumber: 63
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 57
+                            lineNumber: 64
                         },
                         __self: undefined,
                         children: "NEAR Aalitics Log"
@@ -22850,7 +22855,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 59
+                            lineNumber: 66
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22858,25 +22863,25 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 60
+                            lineNumber: 67
                         },
                         __self: undefined,
                         children: "Log in"
                     })
                 ]
             }),
-            currentUser ? /*#__PURE__*/ _jsxRuntime.jsx(_formAnaliticsDefault.default, {
+            currentUser ? /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default, {
                 onSubmit: onSubmit,
                 currentUser: currentUser,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 64
+                    lineNumber: 71
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 65
+                    lineNumber: 72
                 },
                 __self: undefined
             }),
@@ -22884,19 +22889,18 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 messages: messages,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 67
+                    lineNumber: 74
                 },
                 __self: undefined
             })
         ]
     }));
 };
-_s(App, "YExH3FFnwk/sBgpfNMJP4zTRClg=");
 _c = App;
 App.propTypes = {
     contract: _propTypesDefault.default.shape({
-        setAnalitics: _propTypesDefault.default.func.isRequired,
-        getAnalytics: _propTypesDefault.default.func.isRequired
+        set_analitics: _propTypesDefault.default.func.isRequired,
+        get_analytics: _propTypesDefault.default.func.isRequired
     }).isRequired,
     currentUser: _propTypesDefault.default.shape({
         accountId: _propTypesDefault.default.string.isRequired,
@@ -22919,7 +22923,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","regenerator-runtime/runtime":"1EBPE","react":"4mchR","prop-types":"2bysO","big.js":"bul70","./components/SignIn":"8Yzfb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./components/FormAnalitics":"8V3qM"}],"1EBPE":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","regenerator-runtime/runtime":"1EBPE","react":"4mchR","prop-types":"2bysO","big.js":"bul70","./components/SignIn":"8Yzfb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./components/Form":"kTZ5h"}],"1EBPE":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -25015,189 +25019,170 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"aeH4U"}],"8V3qM":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$79ee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-refresh/runtime":"aeH4U"}],"kTZ5h":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$8966 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$79ee.prelude(module);
+$parcel$ReactRefreshHelpers$8966.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-class FormAnalitics {
-    constructor(props){
-        //    super(props);
-        this.state = {
-            user_name: currentUser.accountId,
-            app_id: 'App example',
-            action_id: 'Action example'
-        };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    handleChange(event) {
-        this.setState({
-            user_name: event.target.user_name,
-            app_id: event.target.app_id,
-            action_id: event.target.action_id
-        });
-    }
-    handleSubmit(event) {
-        console.log('Will set analitics into blockchain: ' + this.state);
-        contract.set_analytics(this.state);
-        let record = contract.get_analytics();
-        console.log('Get from blockchain: ' + record);
-        alert(record);
-        event.preventDefault();
-    }
-    render() {
-        return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
-            onSubmit: onSubmit,
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+function Form({ onSubmit , currentUser , analitics  }) {
+    return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
+        onSubmit: onSubmit,
+        __source: {
+            fileName: "src/components/Form.jsx",
+            lineNumber: 6
+        },
+        __self: this,
+        children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
+            id: "fieldset",
             __source: {
-                fileName: "src/components/FormAnalitics.jsx",
-                lineNumber: 34
+                fileName: "src/components/Form.jsx",
+                lineNumber: 7
             },
             __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
-                id: "fieldset",
-                __source: {
-                    fileName: "src/components/FormAnalitics.jsx",
-                    lineNumber: 35
-                },
-                __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                        __source: {
-                            fileName: "src/components/FormAnalitics.jsx",
-                            lineNumber: 36
-                        },
-                        __self: this,
-                        children: [
-                            "Sign into log analitics, ",
-                            currentUser.accountId,
-                            "!"
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                        className: "highlight",
-                        __source: {
-                            fileName: "src/components/FormAnalitics.jsx",
-                            lineNumber: 37
-                        },
-                        __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                                htmlFor: "user_name",
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 38
-                                },
-                                __self: this,
-                                children: "User name"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                                autoComplete: "off",
-                                autoFocus: true,
-                                id: "user_name",
-                                value: "{ this.state.user_name }",
-                                required: true,
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 39
-                                },
-                                __self: this
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                        __source: {
-                            fileName: "src/components/FormAnalitics.jsx",
-                            lineNumber: 47
-                        },
-                        __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                                htmlFor: "app_id",
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 48
-                                },
-                                __self: this,
-                                children: "App #"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                                autoComplete: "off",
-                                autoFocus: true,
-                                id: "app_id",
-                                value: "{ this.state.app_id }",
-                                required: true,
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 49
-                                },
-                                __self: this
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                        __source: {
-                            fileName: "src/components/FormAnalitics.jsx",
-                            lineNumber: 57
-                        },
-                        __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                                htmlFor: "action_id",
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 58
-                                },
-                                __self: this,
-                                children: "Action #"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                                autoComplete: "off",
-                                autoFocus: true,
-                                id: "action_id",
-                                value: "{ this.state.action_id }",
-                                required: true,
-                                __source: {
-                                    fileName: "src/components/FormAnalitics.jsx",
-                                    lineNumber: 59
-                                },
-                                __self: this
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx("button", {
-                        type: "submit",
-                        __source: {
-                            fileName: "src/components/FormAnalitics.jsx",
-                            lineNumber: 67
-                        },
-                        __self: this,
-                        children: "Submit"
-                    })
-                ]
-            })
-        }));
-    }
-} // FormAnalitics.propTypes = {
- //   onSubmit: PropTypes.func.isRequired,
- //   currentUser: PropTypes.shape({
- //     accountId: PropTypes.string.isRequired,
- //     balance: PropTypes.string.isRequired
- //   })
- // };
-exports.default = FormAnalitics;
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                    __source: {
+                        fileName: "src/components/Form.jsx",
+                        lineNumber: 8
+                    },
+                    __self: this,
+                    children: [
+                        "Sign into log analitics, ",
+                        currentUser.accountId,
+                        "!"
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                    className: "highlight",
+                    __source: {
+                        fileName: "src/components/Form.jsx",
+                        lineNumber: 9
+                    },
+                    __self: this,
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                            htmlFor: "user_name",
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 10
+                            },
+                            __self: this,
+                            children: "User name"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                            autoComplete: "off",
+                            autoFocus: true,
+                            id: "user_name",
+                            value: "{ analitics.user_name }",
+                            required: true,
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 11
+                            },
+                            __self: this
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                    __source: {
+                        fileName: "src/components/Form.jsx",
+                        lineNumber: 19
+                    },
+                    __self: this,
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                            htmlFor: "app_id",
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 20
+                            },
+                            __self: this,
+                            children: "App #"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                            autoComplete: "off",
+                            autoFocus: true,
+                            id: "app_id",
+                            value: "AnaliticsApp",
+                            required: true,
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 21
+                            },
+                            __self: this
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                    __source: {
+                        fileName: "src/components/Form.jsx",
+                        lineNumber: 29
+                    },
+                    __self: this,
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                            htmlFor: "action_id",
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 30
+                            },
+                            __self: this,
+                            children: "Action #"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                            autoComplete: "off",
+                            autoFocus: true,
+                            id: "action_id",
+                            value: "AnaliticsAction",
+                            required: true,
+                            __source: {
+                                fileName: "src/components/Form.jsx",
+                                lineNumber: 31
+                            },
+                            __self: this
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                    type: "submit",
+                    __source: {
+                        fileName: "src/components/Form.jsx",
+                        lineNumber: 39
+                    },
+                    __self: this,
+                    children: "Submit"
+                })
+            ]
+        })
+    }));
+}
+exports.default = Form;
+_c = Form;
+Form.propTypes = {
+    onSubmit: _propTypesDefault.default.func.isRequired,
+    currentUser: _propTypesDefault.default.shape({
+        accountId: _propTypesDefault.default.string.isRequired,
+        balance: _propTypesDefault.default.string.isRequired
+    })
+};
+var _c;
+$RefreshReg$(_c, "Form");
 
-  $parcel$ReactRefreshHelpers$79ee.postlude(module);
+  $parcel$ReactRefreshHelpers$8966.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV"}],"lnhM6":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","prop-types":"2bysO","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"lnhM6":[function(require,module,exports) {
 const CONTRACT_NAME = 'tae.testnet'; /* TODO: change this to your account nino4ire */ 
 function getConfig(env) {
     switch(env){
