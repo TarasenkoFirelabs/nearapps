@@ -25027,7 +25027,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 class FormAnalitics {
     constructor(props){
-        super(props);
+        //    super(props);
         this.state = {
             user_name: currentUser.accountId,
             app_id: 'App example',
