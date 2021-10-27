@@ -22830,7 +22830,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
         });
     };
     const signIn = ()=>{
-        wallet.requestSignIn(nearConfig.contractName, 'NEAR Aalitics Log');
+        wallet.requestSignIn(nearConfig.contractName, 'NEAR Analitic Logs');
     };
     const signOut = ()=>{
         wallet.signOut();
@@ -22856,7 +22856,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                             lineNumber: 57
                         },
                         __self: undefined,
-                        children: "NEAR Aalitics Log"
+                        children: "NEAR Analitic Logs"
                     }),
                     currentUser ? /*#__PURE__*/ _jsxRuntime.jsx("button", {
                         onClick: signOut,
@@ -22880,7 +22880,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
             currentUser ? /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default, {
                 onSubmit: onSubmit,
                 currentUser: currentUser,
-                analitics: analitics,
+                analitics: (user_name.value, app_id.value, action_id.value),
                 __source: {
                     fileName: "src/App.js",
                     lineNumber: 64
