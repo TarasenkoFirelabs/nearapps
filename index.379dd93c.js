@@ -22795,29 +22795,39 @@ var _s = $RefreshSig$();
 ///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     _s();
-    const [user_name, app_id, action_id] = _react.useState([]);
-    // currentUser.accountId, 'Example App', 'Example Action'
+    const [user_name, app_id, action_id] = _react.useState([
+        currentUser ? currentUser.accountId : 'SuperHero',
+        'Example App',
+        'Example Action'
+    ]);
     _react.useEffect(()=>{
         // TODO: don't just fetch once; subscribe!
-        contract.get_analytics().then(setAnalitics);
+        contract.get_analytics().then({
+            user_name,
+            app_id,
+            action_id
+        });
     }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
-    ///    console.log('Will set analitics into blockchain: ' + this.state);
-    // const { fieldset, user_name, app_id, action_id } = e.target.elements;
-    // fieldset.disabled = true;
-    // // TODO: optimistically update page with new message,
-    // // update blockchain data in background
-    // // add uuid to each message, so we know which one is already known
-    // contract.set_analytics(
-    //   { user_name, app_id, action_id }
-    // ).then(() => {
-    //   contract.get_analytics().then(analitics => {
-    //     setAnalitics(analitics);
-    //     fieldset.disabled = false;
-    //     app_id.focus();
-    //   });
-    // });
+        const { fieldset , user_name , app_id , action_id  } = e.target.elements;
+        fieldset.disabled = true;
+        // TODO: optimistically update page with new message,
+        // update blockchain data in background
+        // add uuid to each message, so we know which one is already known
+        contract.set_analytics({
+            user_name,
+            app_id,
+            action_id
+        }).then(()=>{
+            contract.get_analytics().then((analitics)=>{
+                user_name.value = analitics.user_name;
+                app_id.value = analitics.app_id;
+                action_id.value = analitics.action_id;
+                fieldset.disabled = false;
+                app_id.focus();
+            });
+        });
     };
     const signIn = ()=>{
         wallet.requestSignIn(nearConfig.contractName, 'NEAR Aalitics Log');
@@ -22882,19 +22892,11 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                     lineNumber: 65
                 },
                 __self: undefined
-            }),
-            !!currentUser && !!messages.length && /*#__PURE__*/ _jsxRuntime.jsx(Messages, {
-                messages: messages,
-                __source: {
-                    fileName: "src/App.js",
-                    lineNumber: 67
-                },
-                __self: undefined
             })
         ]
     }));
 };
-_s(App, "3c5tQ1Zdnxl1JdCOWYa7y4JFm24=");
+_s(App, "RD97neyXCDHDyHnAZiImp1QLrAI=");
 _c = App;
 App.propTypes = {
     contract: _propTypesDefault.default.shape({
