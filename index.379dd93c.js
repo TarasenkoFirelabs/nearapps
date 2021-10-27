@@ -22801,13 +22801,11 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
         'Example Action'
     ]);
     const getAnalytics = function() {
-        contract.get_analytics().then((analitics)=>{
-            user_name.value = analitics.user_name;
-            app_id.value = analitics.app_id;
-            action_id.value = analitics.action_id;
-            fieldset.disabled = false;
-            user_name.focus();
-        });
+        var _s = $RefreshSig$();
+        contract.get_analytics().then(_s((analitics)=>{
+            _s();
+            _formDefault.default.useState(analitics);
+        }, "Aw+/wwt3hQt/xQixgvV4Pdn2pDg="));
     };
     _react.useEffect(()=>{
         // TODO: don't just fetch once; subscribe!
@@ -22838,21 +22836,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 59
+            lineNumber: 54
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 60
+                    lineNumber: 55
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 61
+                            lineNumber: 56
                         },
                         __self: undefined,
                         children: "NEAR Analitic Logs"
@@ -22861,7 +22859,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 63
+                            lineNumber: 58
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22869,7 +22867,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 64
+                            lineNumber: 59
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22882,13 +22880,13 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 analitics: (user_name.value, app_id.value, action_id.value),
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 68
+                    lineNumber: 63
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 69
+                    lineNumber: 64
                 },
                 __self: undefined
             })
