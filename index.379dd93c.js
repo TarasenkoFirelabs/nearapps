@@ -25040,7 +25040,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-class Form extends Component {
+class Form {
     constructor({ onSubmit , currentUser , analitics  }){
         this.state = analitics;
     }
