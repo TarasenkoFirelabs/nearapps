@@ -22806,7 +22806,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
-        console.log('Will set analitics into blockchain: ' + undefined.state);
+        ///    console.log('Will set analitics into blockchain: ' + this.state);
         const { fieldset , user_name , app_id , action_id  } = e.target.elements;
         fieldset.disabled = true;
         // TODO: optimistically update page with new message,
@@ -22875,6 +22875,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
             currentUser ? /*#__PURE__*/ _jsxRuntime.jsx(_formDefault.default, {
                 onSubmit: onSubmit,
                 currentUser: currentUser,
+                analitics: analitics,
                 __source: {
                     fileName: "src/App.js",
                     lineNumber: 63
@@ -22908,6 +22909,11 @@ App.propTypes = {
     currentUser: _propTypesDefault.default.shape({
         accountId: _propTypesDefault.default.string.isRequired,
         balance: _propTypesDefault.default.string.isRequired
+    }),
+    analitics: _propTypesDefault.default.shape({
+        user_name: _propTypesDefault.default.string.isRequired,
+        app_id: _propTypesDefault.default.string.isRequired,
+        action_id: _propTypesDefault.default.string.isRequired
     }),
     nearConfig: _propTypesDefault.default.shape({
         contractName: _propTypesDefault.default.string.isRequired
@@ -25036,140 +25042,143 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-function Form({ onSubmit , currentUser , analitics  }) {
-    return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
-        onSubmit: onSubmit,
-        __source: {
-            fileName: "src/components/Form.jsx",
-            lineNumber: 6
-        },
-        __self: this,
-        children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
-            id: "fieldset",
+class Form extends Component {
+    constructor({ onSubmit , currentUser , analitics  }){
+        this.state = analitics;
+    }
+    render() {
+        return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
+            onSubmit: onSubmit,
             __source: {
                 fileName: "src/components/Form.jsx",
-                lineNumber: 7
+                lineNumber: 11
             },
             __self: this,
-            children: [
-                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                    __source: {
-                        fileName: "src/components/Form.jsx",
-                        lineNumber: 8
-                    },
-                    __self: this,
-                    children: [
-                        "Sign into log analitics, ",
-                        currentUser.accountId,
-                        "!"
-                    ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                    className: "highlight",
-                    __source: {
-                        fileName: "src/components/Form.jsx",
-                        lineNumber: 9
-                    },
-                    __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "user_name",
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 10
-                            },
-                            __self: this,
-                            children: "User name"
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                            autoComplete: "off",
-                            autoFocus: true,
-                            id: "user_name",
-                            value: "{ analitics.user_name }",
-                            required: true,
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 11
-                            },
-                            __self: this
-                        })
-                    ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                    __source: {
-                        fileName: "src/components/Form.jsx",
-                        lineNumber: 19
-                    },
-                    __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "app_id",
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 20
-                            },
-                            __self: this,
-                            children: "App #"
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                            autoComplete: "off",
-                            autoFocus: true,
-                            id: "app_id",
-                            value: "AnaliticsApp",
-                            required: true,
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 21
-                            },
-                            __self: this
-                        })
-                    ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsxs("p", {
-                    __source: {
-                        fileName: "src/components/Form.jsx",
-                        lineNumber: 29
-                    },
-                    __self: this,
-                    children: [
-                        /*#__PURE__*/ _jsxRuntime.jsx("label", {
-                            htmlFor: "action_id",
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 30
-                            },
-                            __self: this,
-                            children: "Action #"
-                        }),
-                        /*#__PURE__*/ _jsxRuntime.jsx("input", {
-                            autoComplete: "off",
-                            autoFocus: true,
-                            id: "action_id",
-                            value: "AnaliticsAction",
-                            required: true,
-                            __source: {
-                                fileName: "src/components/Form.jsx",
-                                lineNumber: 31
-                            },
-                            __self: this
-                        })
-                    ]
-                }),
-                /*#__PURE__*/ _jsxRuntime.jsx("button", {
-                    type: "submit",
-                    __source: {
-                        fileName: "src/components/Form.jsx",
-                        lineNumber: 39
-                    },
-                    __self: this,
-                    children: "Submit"
-                })
-            ]
-        })
-    }));
+            children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
+                id: "fieldset",
+                __source: {
+                    fileName: "src/components/Form.jsx",
+                    lineNumber: 12
+                },
+                __self: this,
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                        __source: {
+                            fileName: "src/components/Form.jsx",
+                            lineNumber: 13
+                        },
+                        __self: this,
+                        children: [
+                            "Sign into log analitics, ",
+                            currentUser.accountId,
+                            "!"
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                        className: "highlight",
+                        __source: {
+                            fileName: "src/components/Form.jsx",
+                            lineNumber: 14
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                                htmlFor: "user_name",
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 15
+                                },
+                                __self: this,
+                                children: "User name"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                                autoComplete: "off",
+                                autoFocus: true,
+                                id: "user_name",
+                                value: "{ this.state.user_name }",
+                                required: true,
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 16
+                                },
+                                __self: this
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                        __source: {
+                            fileName: "src/components/Form.jsx",
+                            lineNumber: 23
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                                htmlFor: "app_id",
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 24
+                                },
+                                __self: this,
+                                children: "App #"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                                autoComplete: "off",
+                                autoFocus: true,
+                                id: "app_id",
+                                value: "{ this.state.app_id }",
+                                required: true,
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 25
+                                },
+                                __self: this
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsxs("p", {
+                        __source: {
+                            fileName: "src/components/Form.jsx",
+                            lineNumber: 32
+                        },
+                        __self: this,
+                        children: [
+                            /*#__PURE__*/ _jsxRuntime.jsx("label", {
+                                htmlFor: "action_id",
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 33
+                                },
+                                __self: this,
+                                children: "Action #"
+                            }),
+                            /*#__PURE__*/ _jsxRuntime.jsx("input", {
+                                autoComplete: "off",
+                                autoFocus: true,
+                                id: "action_id",
+                                value: "{ this.state.action_id }",
+                                required: true,
+                                __source: {
+                                    fileName: "src/components/Form.jsx",
+                                    lineNumber: 34
+                                },
+                                __self: this
+                            })
+                        ]
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                        type: "submit",
+                        __source: {
+                            fileName: "src/components/Form.jsx",
+                            lineNumber: 41
+                        },
+                        __self: this,
+                        children: "Submit"
+                    })
+                ]
+            })
+        }));
+    }
 }
-exports.default = Form;
-_c = Form;
 Form.propTypes = {
     onSubmit: _propTypesDefault.default.func.isRequired,
     currentUser: _propTypesDefault.default.shape({
@@ -25177,8 +25186,7 @@ Form.propTypes = {
         balance: _propTypesDefault.default.string.isRequired
     })
 };
-var _c;
-$RefreshReg$(_c, "Form");
+exports.default = Form;
 
   $parcel$ReactRefreshHelpers$8966.postlude(module);
 } finally {
