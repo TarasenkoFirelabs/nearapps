@@ -25025,7 +25025,7 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
-class FormAnalitics extends React.Component {
+class FormAnalitics {
     constructor(props){
         super(props);
         this.state = {
