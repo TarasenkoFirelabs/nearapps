@@ -22791,36 +22791,38 @@ var _form = require("./components/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _signIn = require("./components/SignIn");
 var _signInDefault = parcelHelpers.interopDefault(_signIn);
+var _s = $RefreshSig$();
 ///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 const App = ({ contract , currentUser , nearConfig , wallet  })=>{
-    //const [messages, set_analitics] = useState([]);
-    // useEffect(() => {
-    //   // TODO: don't just fetch once; subscribe!
-    //   contract.getMessages().then(setMessages);
-    // }, []);
+    _s();
+    const [user_name, app_id, action_id] = _react.useState([
+        currentUser.accountId,
+        'Example App',
+        'Example Action'
+    ]);
+    _react.useEffect(()=>{
+        // TODO: don't just fetch once; subscribe!
+        contract.get_analytics().then(setAnalitics);
+    }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
         console.log('Will set analitics into blockchain: ' + undefined.state);
-    // contract.set_analytics(this.state);
-    // let record = contract.get_analytics();
-    // console.log('Get from blockchain: ' + record);
-    // alert(record);
-    // const { fieldset, message, donation } = e.target.elements;
-    // fieldset.disabled = true;
-    // // TODO: optimistically update page with new message,
-    // // update blockchain data in background
-    // // add uuid to each message, so we know which one is already known
-    // contract.setAnalytics(
-    //   { text: message.value },
-    //   BOATLOAD_OF_GAS,
-    //   Big(donation.value || '0').times(10 ** 24).toFixed()
-    // ).then(() => {
-    //   contract.getAnalytics().then(log => {
-    //     setMessages(messages);
-    //     fieldset.disabled = false;
-    //     message.focus();
-    //   });
-    // });
+        const { fieldset , user_name , app_id , action_id  } = e.target.elements;
+        fieldset.disabled = true;
+        // TODO: optimistically update page with new message,
+        // update blockchain data in background
+        // add uuid to each message, so we know which one is already known
+        contract.set_analytics({
+            user_name,
+            app_id,
+            action_id
+        }).then(()=>{
+            contract.get_analytics().then((analitics)=>{
+                setAnalitics(analitics);
+                fieldset.disabled = false;
+                app_id.focus();
+            });
+        });
     };
     const signIn = ()=>{
         wallet.requestSignIn(nearConfig.contractName, 'NEAR Aalitics Log');
@@ -22832,21 +22834,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 62
+            lineNumber: 54
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 63
+                    lineNumber: 55
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 64
+                            lineNumber: 56
                         },
                         __self: undefined,
                         children: "NEAR Aalitics Log"
@@ -22855,7 +22857,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 66
+                            lineNumber: 58
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22863,7 +22865,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 67
+                            lineNumber: 59
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22875,13 +22877,13 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 currentUser: currentUser,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 71
+                    lineNumber: 63
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 72
+                    lineNumber: 64
                 },
                 __self: undefined
             }),
@@ -22889,13 +22891,14 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 messages: messages,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 74
+                    lineNumber: 66
                 },
                 __self: undefined
             })
         ]
     }));
 };
+_s(App, "Yuwhlb+aFUIt44GO9mlmF2vDu5E=");
 _c = App;
 App.propTypes = {
     contract: _propTypesDefault.default.shape({
