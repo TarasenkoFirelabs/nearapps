@@ -1,40 +1,32 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
-    <style>
-        h1 {
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="./favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <link rel="apple-touch-icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="global.scss">
+    <title>NEAR Log Analitics</title>
+    <meta property="og:title" content="NEAR Log Analitics">
+    <meta property="og:description" content="A log analitics with comments stored on the NEAR blockchain">
+    <!-- <meta property="og:image" content=""> -->
+    <!-- <meta property="og:url" content=""> -->
+    <!-- <meta name="twitter:card" content="summary_large_image"> -->
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-        }
-</style>
-</head>
-<body style="background: #eef2fe; font-family: 'Arvo', serif;">
-<div class="container">
-    <h1>This is just push LogAnalytic's into blockchain!</h1>
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-    <div class="sign-in" style="display: none;">
-        <p>You'll need to sign in to call contract methods:</p>
-        <button class="btn btn-primary" style="background-color: #0072CE;">Sign In</button>
-    </div>
-
-    <div class="after-sign-in" style="display: none;">
-        <div class="scene">
-            <div class="panel">
-                <input id="app_id" class="body-shape shadow" value="nino_app" placeholder="app_id"/>
-                <input id="action_id" class="body-shape shadow" value="nino_action" placeholder="action_id"/>
-                <input id="user_id" class="body-shape shadow" value="nino_user" placeholder="user"/>
-            </div>
-        </div>
-        <div class="contract-deploy">
-            <button class="btn btn-primary" style="background-color: #0072CE;">Deploy String</button>
-        </div>
-        <div class="sign-out">
-            <button class="btn btn-primary" style="background-color: #0072CE;">Sign Out</button>
-        </div>
-    </div>
-</div>
-<script src="./main.js"></script>
-</body>
+      To begin the development, run `yarn dev`.
+      To create a production bundle, use `yarn build`.
+    -->
+    <script type="module" src="./index.js"></script>
+  </body>
 </html>

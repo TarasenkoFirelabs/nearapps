@@ -1,36 +1,84 @@
 {
   "name": "api-call",
-  "description": "Counter Smart Contract\n\nThis project contains implementation of counter backed by blockchain, written in Rust.",
-  "version": "0.0.1",
+  "description": "Log Analitics Contract\n\nThis project contains implementation of log backed by blockchain, written in Rust.",
+  "version": "0.1.0",
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
-    "build": "cd contract && cargo build --target wasm32-unknown-unknown --release",
-    "postbuild": "cp contract/target/wasm32-unknown-unknown/release/rust_counter_tutorial.wasm ./out/main.wasm",
-    "deploy:contract": "near deploy",
-    "deploy:pages": "gh-pages -d src",
-    "deploy": "yarn build && yarn deploy:contract",
-    "deploy:dev": "yarn build && near dev-deploy",
-    "dev": "yarn deploy:dev && yarn start:dev",
-    "prestart": "yarn build && yarn deploy:contract",
-    "start": "parcel src/index.html",
-    "start:dev": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
-    "test:cargo": "cd contract && cargo test -- --nocapture",
-    "test": "yarn build && yarn test:cargo && jest"
+    "build": "yarn build:contract && yarn build:web",
+    "build:contract": "cd contract && cargo build --release",
+    "postbuild:contract": "cp contract/target/release/libapi_call.dylib ./out/main.dylib",
+    "deploy:contract": "near deploy --wasmFile ./out/main.dylib",
+    "build:web": "parcel build src/index.html --public-url ./",
+    "deploy": "yarn build && yarn deploy:contract && gh-pages -d dist/",
+    "dev": "yarn build:contract && yarn deploy:contract && nodemon --watch assembly -e ts --exec yarn dev:start",
+    "lint": "eslint \"./**/*.js\" \"./**/*.jsx\"",
+    "start": "yarn deploy && parcel src/index.html",
+    "dev:start": "env-cmd -f ./neardev/dev-account.env parcel src/index.html",
+    "test": "yarn build:contract && asp && jest"
   },
   "devDependencies": {
-    "env-cmd": "^10.1.0",
-    "gh-pages": "~3.0.0",
-    "jest": "~25.2.0",
-    "jest-environment-node": "~26.0.1",
-    "near-cli": "^1.0.1",
-    "nodemon": "~2.0.4",
-    "parcel-bundler": "~1.12.4"
-  },
-  "jest": {
-    "testEnvironment": "near-cli/test_environment"
+    "@babel/core": "^7.14.0",
+    "@babel/preset-env": "^7.14.2",
+    "@babel/preset-react": "^7.13.13",
+    "@parcel/transformer-sass": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.22.1",
+    "@typescript-eslint/parser": "^4.22.1",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.26.0",
+    "gh-pages": "^3.1.0",
+    "jest": "^26.6.3",
+    "jest-environment-node": "^26.6.2",
+    "near-cli": "^2.0.0",
+    "near-sdk-as": "3.2.3",
+    "nodemon": "^2.0.7",
+    "parcel": "^2.0.0",
+    "react-test-renderer": "^17.0.2",
+    "sass": "^1.32.13",
+    "typescript": "^4.2.4"
   },
   "dependencies": {
-    "near-api-js": "^0.27.0",
-    "regenerator-runtime": "^0.13.5"
+    "big.js": "^6.1.1",
+    "env-cmd": "^10.1.0",
+    "near-api-js": "^0.41.0",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "regenerator-runtime": "^0.13.7"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "jest": {
+    "projects": [
+      {
+        "displayName": "User interface tests",
+        "testEnvironment": "jsdom",
+        "testMatch": [
+          "<rootDir>/src/tests/ui/*.js"
+        ]
+      },
+      {
+        "displayName": "Integration tests",
+        "testEnvironment": "near-cli/test_environment",
+        "testMatch": [
+          "<rootDir>/src/tests/integration/*.js"
+        ]
+      }
+    ],
+    "testPathIgnorePatterns": [
+      "assembly/*"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

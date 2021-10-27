@@ -6,13 +6,12 @@ extern crate base64;
 
 use base64::{encode, decode};
 
-
 #[near_bindgen]
 #[derive(BorshDeserialize, BorshSerialize, PanicOnDefault)]
 pub struct Call {
     pub app_id: String,
     pub action_id: String,
-    pub user: String,
+    pub user_name: String,
 }
 
 #[near_bindgen]
@@ -22,29 +21,29 @@ impl Call {
         Self {
             app_id: String::new(),
             action_id: String::new(),
-            user: String::new(),
+            user_name: String::new(),
         }
     }
 
     pub fn generate_string(&self) -> String {
-    	format!("{}_{}_{}", encode(self.app_id.clone()), encode(self.action_id.clone()), encode(self.user.clone()))	
+    	format!("{}_{}_{}", encode(self.app_id.clone()), encode(self.action_id.clone()), encode(self.user_name.clone()))	
     }
 
-    pub fn set_blockchain_analytics(encoded: String) -> Self {
+    pub fn set_analytics(encoded: String) -> Self {
         let call_encoded: Vec<&str> = encoded.split('_').collect();
         let app_id_encoded = call_encoded[0];
         let app_id = str::from_utf8(&decode(app_id_encoded).unwrap()[..]).unwrap().to_string();
         let action_id_encoded = call_encoded[1];
             let action_id = str::from_utf8(&decode(action_id_encoded).unwrap()[..]).unwrap().to_string();
-        let user_encoded = call_encoded[2];
-            let user = str::from_utf8(&decode(user_encoded).unwrap()[..]).unwrap().to_string();
+        let user_name_encoded = call_encoded[2];
+            let user_name = str::from_utf8(&decode(user_name_encoded).unwrap()[..]).unwrap().to_string();
 
         env::log_str(&encoded);
-            Call {app_id, action_id, user}
+            Call {app_id, action_id, user_name}
     }
 
-    pub fn get_blockchain_analytics(&self) -> &Self {
-        env::log_str("Your call is returned");
+    pub fn get_analytics(&self) -> &Self {
+        env::log_str("Your analitics is returned");
         &self
     }
 }
@@ -73,26 +72,26 @@ mod tests {
 
     #[test]
     fn encoding_1() {
-	let app_id = "appid".to_string();
-	let action_id = "actionid".to_string();
-	let user = "user123".to_string();
-	let api_call = Call{app_id, action_id, user};
-	let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
-	assert_eq!(api_call.app_id, call_decoded.app_id);
-	assert_eq!(api_call.action_id, call_decoded.action_id);
-	assert_eq!(api_call.user, call_decoded.user);
+        let app_id = "appid".to_string();
+        let action_id = "actionid".to_string();
+        let user_name = "user_123".to_string();
+        let api_call = Call{app_id, action_id, user_name};
+        let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
+        assert_eq!(api_call.app_id, call_decoded.app_id);
+        assert_eq!(api_call.action_id, call_decoded.action_id);
+        assert_eq!(api_call.user_name, call_decoded.user_name);
     }
 
     #[test]
     fn encoding_2() {
         let app_id = "Somestring12345UVW".to_string();
         let action_id =  "SomeaccountABC6789".to_string();
-        let user = "123Someuser".to_string();
-        let api_call = Call{app_id, action_id, user};
+        let user_name = "123Someuser".to_string();
+        let api_call = Call{app_id, action_id, user_name};
         let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
         assert_eq!(api_call.app_id, call_decoded.app_id);
         assert_eq!(api_call.action_id, call_decoded.action_id);
-        assert_eq!(api_call.user, call_decoded.user);
+        assert_eq!(api_call.user_name, call_decoded.user_name);
     }
 
     #[test]
@@ -101,7 +100,6 @@ mod tests {
         let call_decoded = Call::set_blockchain_analytics(api_call.generate_string());
         assert_eq!(api_call.app_id, call_decoded.app_id);
         assert_eq!(api_call.action_id, call_decoded.action_id);
-        assert_eq!(api_call.user, call_decoded.user);
+        assert_eq!(api_call.user_name, call_decoded.user_name);
     }
-
 }
