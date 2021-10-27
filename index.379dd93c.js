@@ -22806,23 +22806,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
-        ///    console.log('Will set analitics into blockchain: ' + this.state);
-        const { fieldset , user_name , app_id , action_id  } = e.target.elements;
-        fieldset.disabled = true;
-        // TODO: optimistically update page with new message,
-        // update blockchain data in background
-        // add uuid to each message, so we know which one is already known
-        contract.set_analytics({
-            user_name,
-            app_id,
-            action_id
-        }).then(()=>{
-            contract.get_analytics().then((analitics)=>{
-                setAnalitics(analitics);
-                fieldset.disabled = false;
-                app_id.focus();
-            });
-        });
+    ///    console.log('Will set analitics into blockchain: ' + this.state);
+    // const { fieldset, user_name, app_id, action_id } = e.target.elements;
+    // fieldset.disabled = true;
+    // // TODO: optimistically update page with new message,
+    // // update blockchain data in background
+    // // add uuid to each message, so we know which one is already known
+    // contract.set_analytics(
+    //   { user_name, app_id, action_id }
+    // ).then(() => {
+    //   contract.get_analytics().then(analitics => {
+    //     setAnalitics(analitics);
+    //     fieldset.disabled = false;
+    //     app_id.focus();
+    //   });
+    // });
     };
     const signIn = ()=>{
         wallet.requestSignIn(nearConfig.contractName, 'NEAR Aalitics Log');
