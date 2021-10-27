@@ -25183,15 +25183,14 @@ class FormAnalitics {
             })
         }));
     }
-}
+} // FormAnalitics.propTypes = {
+ //   onSubmit: PropTypes.func.isRequired,
+ //   currentUser: PropTypes.shape({
+ //     accountId: PropTypes.string.isRequired,
+ //     balance: PropTypes.string.isRequired
+ //   })
+ // };
 exports.default = FormAnalitics;
-FormAnalitics.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-    currentUser: PropTypes.shape({
-        accountId: PropTypes.string.isRequired,
-        balance: PropTypes.string.isRequired
-    })
-};
 
   $parcel$ReactRefreshHelpers$79ee.postlude(module);
 } finally {
