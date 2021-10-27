@@ -22795,18 +22795,21 @@ var _s = $RefreshSig$();
 ///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
 const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     _s();
-    const [user_name, app_id, action_id] = _react.useState([
+    const [user_name_value, app_id_value, action_id_value] = _react.useState([
         currentUser ? currentUser.accountId : 'SuperHero',
         'Example App',
         'Example Action'
     ]);
+    const get_analytics = contract.get_analytics().then((analitics)=>{
+        user_name.value = analitics.user_name;
+        app_id.value = analitics.app_id;
+        action_id.value = analitics.action_id;
+        fieldset.disabled = false;
+        user_name.focus();
+    });
     _react.useEffect(()=>{
         // TODO: don't just fetch once; subscribe!
-        contract.get_analytics().then({
-            user_name,
-            app_id,
-            action_id
-        });
+        get_analytics();
     }, []);
     const onSubmit = (e)=>{
         e.preventDefault();
@@ -22820,13 +22823,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
             app_id,
             action_id
         }).then(()=>{
-            contract.get_analytics().then((analitics)=>{
-                user_name.value = analitics.user_name;
-                app_id.value = analitics.app_id;
-                action_id.value = analitics.action_id;
-                fieldset.disabled = false;
-                app_id.focus();
-            });
+            get_analytics();
         });
     };
     const signIn = ()=>{
@@ -22839,21 +22836,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 55
+            lineNumber: 58
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 56
+                    lineNumber: 59
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 57
+                            lineNumber: 60
                         },
                         __self: undefined,
                         children: "NEAR Analitic Logs"
@@ -22862,7 +22859,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 59
+                            lineNumber: 62
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22870,7 +22867,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 60
+                            lineNumber: 63
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22883,20 +22880,20 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 analitics: (user_name.value, app_id.value, action_id.value),
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 64
+                    lineNumber: 67
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 65
+                    lineNumber: 68
                 },
                 __self: undefined
             })
         ]
     }));
 };
-_s(App, "RD97neyXCDHDyHnAZiImp1QLrAI=");
+_s(App, "dxMD7cvhNrwbLU/lR/IYml/R4rI=");
 _c = App;
 App.propTypes = {
     contract: _propTypesDefault.default.shape({
