@@ -22808,10 +22808,12 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     };
     _react.useEffect(()=>{
         // TODO: don't just fetch once; subscribe!
+        contract.get_analytics().then((saved)=>{
+            console.log(saved);
+        });
         contract.get_analytics().then(setAnalytics);
     }, []);
     const onSubmit = (formData)=>{
-        // fieldset.disabled = true;
         setIsSubmitting(true);
         // TODO: optimistically update page with new message,
         // update blockchain data in background
@@ -22819,8 +22821,10 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
         contract.set_analytics({
             "encoded": encode64(formData)
         }).then(()=>{
+            contract.get_analytics().then((saved)=>{
+                console.log(saved);
+            });
             contract.get_analytics().then(setAnalytics);
-            console.log('setAnalytics: ' + setAnalytics);
             setIsSubmitting(false);
         });
     };
@@ -22834,21 +22838,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 62
+            lineNumber: 65
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 63
+                    lineNumber: 66
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 64
+                            lineNumber: 67
                         },
                         __self: undefined,
                         children: "NEAR Log Analytics"
@@ -22857,7 +22861,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 66
+                            lineNumber: 69
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22865,7 +22869,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 67
+                            lineNumber: 70
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22879,13 +22883,13 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 disabled: isSubmitting,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 71
+                    lineNumber: 74
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 72
+                    lineNumber: 75
                 },
                 __self: undefined
             })
@@ -24452,6 +24456,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
                             autoComplete: "off",
+                            autoFocus: true,
                             name: "app_id",
                             id: "app_id",
                             value: formData.app_id,
@@ -24468,7 +24473,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 31
+                        lineNumber: 32
                     },
                     __self: undefined,
                     children: [
@@ -24476,7 +24481,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                             htmlFor: "action_id",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 32
+                                lineNumber: 33
                             },
                             __self: undefined,
                             children: "Action #"
@@ -24490,7 +24495,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 33
+                                lineNumber: 34
                             },
                             __self: undefined
                         })
@@ -24499,7 +24504,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 41
+                        lineNumber: 42
                     },
                     __self: undefined,
                     children: [
@@ -24507,14 +24512,13 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                             htmlFor: "user_name",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 42
+                                lineNumber: 43
                             },
                             __self: undefined,
                             children: "User name"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
                             autoComplete: "off",
-                            autoFocus: true,
                             name: "user_name",
                             id: "user_name",
                             value: formData.user_name,
@@ -24522,7 +24526,7 @@ const Form = ({ onSubmit , currentUser , analytics , disabled  })=>{
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 43
+                                lineNumber: 44
                             },
                             __self: undefined
                         })
