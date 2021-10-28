@@ -28,6 +28,6 @@ dist/
 .idea
 
 # Rust build files
-contract/target/**
+contract/target/*
 
 yarn-error.log
