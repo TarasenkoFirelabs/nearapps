@@ -1,4 +1,4 @@
-const CONTRACT_NAME = process.env.CONTRACT_NAME || 'tae.testnet'; /* TODO: change this to your account nino4ire */
+const CONTRACT_NAME = process.env.CONTRACT_NAME || 'analytics-log.testnet'; /* TODO: change this to your account */
 
 function getConfig(env) {
   switch(env) {
