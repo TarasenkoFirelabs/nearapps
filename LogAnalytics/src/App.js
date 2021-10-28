@@ -1,47 +1,52 @@
 import 'regenerator-runtime/runtime';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Big from 'big.js';
 import Form from './components/Form';
 import SignIn from './components/SignIn';
 
-///const BOATLOAD_OF_GAS = Big(3).times(10 ** 13).toFixed();
-
 const App = ({ contract, currentUser, nearConfig, wallet }) => {
-  const [user_name, app_id, action_id] = useState([currentUser ? currentUser.accountId : 'SuperHero', 'Example App', 'Example Action']);
+  let initData = {
+      app_id: 'Example App Log',
+      action_id: 'Example Action Log',
+      user_name: currentUser ? currentUser.accountId : 'Log SuperHero'
+    };
 
-  const getAnalytics = function() { 
-      contract.get_analytics().then(analitics => {
-        Form.useState(analitics);
-    });
-  }
+  const [analytics, setAnalytics] = useState(initData);
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     // TODO: don't just fetch once; subscribe!
-    getAnalytics();
+    contract.get_analytics().then(setAnalytics)
   }, []);
 
-  const onSubmit = (e) => {
-    e.preventDefault();
+  function encode_utf8_base64(str) {
+    return Buffer.from(str).toString('base64');
+  }
 
-    const { fieldset, user_name, app_id, action_id } = e.target.elements;
+  const encode64 = (formData) => {
+    return encode_utf8_base64(formData.app_id) + '_' +
+      encode_utf8_base64(formData.action_id) + '_' +
+      encode_utf8_base64(formData.user_name);
+  }
 
-    fieldset.disabled = true;
+  const onSubmit = (formData) => {
+    setIsSubmitting(true)
 
     // TODO: optimistically update page with new message,
     // update blockchain data in background
     // add uuid to each message, so we know which one is already known
     contract.set_analytics(
-      { user_name, app_id, action_id }
+      {"encoded": encode64( formData )}
     ).then(() => {
-      getAnalytics();
+      contract.get_analytics().then(setAnalytics);
+      setIsSubmitting(false)
     });
   };
 
   const signIn = () => {
     wallet.requestSignIn(
       nearConfig.contractName,
-      'NEAR Analitic Logs'
+      'NEAR Analytics Log'
     );
   };
 
@@ -53,14 +58,14 @@ const App = ({ contract, currentUser, nearConfig, wallet }) => {
   return (
     <main>
       <header>
-        <h1>NEAR Analitic Logs</h1>
+        <h1>NEAR Log Analytics</h1>
         { currentUser
           ? <button onClick={signOut}>Log out</button>
           : <button onClick={signIn}>Log in</button>
         }
       </header>
       { currentUser
-        ? <Form onSubmit={onSubmit} currentUser={currentUser} analitics={ user_name.value, app_id.value, action_id.value } />
+        ? <Form onSubmit={onSubmit} currentUser={currentUser} analytics={analytics} disabled={isSubmitting} />
         : <SignIn/>
       }
     </main>
@@ -69,17 +74,17 @@ const App = ({ contract, currentUser, nearConfig, wallet }) => {
 
 App.propTypes = {
   contract: PropTypes.shape({
-    set_analitics: PropTypes.func.isRequired,
+    set_analytics: PropTypes.func.isRequired,
     get_analytics: PropTypes.func.isRequired
   }).isRequired,
   currentUser: PropTypes.shape({
     accountId: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired
   }),
-  analitics: PropTypes.shape({
-    user_name: PropTypes.string.isRequired,
+  analytics: PropTypes.shape({
     app_id: PropTypes.string.isRequired,
-    action_id: PropTypes.string.isRequired
+    action_id: PropTypes.string.isRequired,
+    user_name: PropTypes.string.isRequired
   }),
   nearConfig: PropTypes.shape({
     contractName: PropTypes.string.isRequired
