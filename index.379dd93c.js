@@ -25635,7 +25635,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
             id: "fieldset",
-            disable: disabled,
+            disabled: disabled,
             __source: {
                 fileName: "src/components/Form.jsx",
                 lineNumber: 37
@@ -28815,8 +28815,8 @@ Object.defineProperty(exports, "BinaryReader", {
 });
 
 },{"borsh":"WrAXR"}],"WrAXR":[function(require,module,exports) {
-var Buffer = require("buffer").Buffer;
 var global = arguments[3];
+var Buffer = require("buffer").Buffer;
 "use strict";
 var __createBinding = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
@@ -35317,8 +35317,8 @@ async function signTransaction(...args) {
 exports.signTransaction = signTransaction;
 
 },{"buffer":"bOetu","js-sha256":"59ogl","./utils/enums":"4Vcr8","borsh":"WrAXR","./utils/key_pair":"lGB9x"}],"59ogl":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /**
  * [js-sha256]{@link https://github.com/emn178/js-sha256}
  *
