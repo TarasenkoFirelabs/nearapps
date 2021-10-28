@@ -25595,6 +25595,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _s = $RefreshSig$();
 Form.propTypes = {
     onSubmit: _propTypesDefault.default.func.isRequired,
     currentUser: _propTypesDefault.default.shape({
@@ -25607,12 +25608,8 @@ Form.propTypes = {
         user_name: _propTypesDefault.default.string.isRequired
     })
 };
-function Form() {
-    ;
-}
-exports.default = Form;
-_c = Form;
-{
+function Form({ onSubmit , currentUser , analytics , disabled  }) {
+    _s();
     const [formData, setFormData] = _react.useState(analytics);
     return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
         onSubmit: onSubmit,
@@ -25620,7 +25617,7 @@ _c = Form;
             fileName: "src/components/Form.jsx",
             lineNumber: 22
         },
-        __self: undefined,
+        __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
             id: "fieldset",
             disable: disabled,
@@ -25628,14 +25625,14 @@ _c = Form;
                 fileName: "src/components/Form.jsx",
                 lineNumber: 23
             },
-            __self: undefined,
+            __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
                         lineNumber: 24
                     },
-                    __self: undefined,
+                    __self: this,
                     children: [
                         "Sign into log analytics, ",
                         currentUser.accountId,
@@ -25647,7 +25644,7 @@ _c = Form;
                         fileName: "src/components/Form.jsx",
                         lineNumber: 26
                     },
-                    __self: undefined,
+                    __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
                             htmlFor: "app_id",
@@ -25655,7 +25652,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 27
                             },
-                            __self: undefined,
+                            __self: this,
                             children: "App #"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
@@ -25669,7 +25666,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 28
                             },
-                            __self: undefined
+                            __self: this
                         })
                     ]
                 }),
@@ -25678,7 +25675,7 @@ _c = Form;
                         fileName: "src/components/Form.jsx",
                         lineNumber: 36
                     },
-                    __self: undefined,
+                    __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
                             htmlFor: "action_id",
@@ -25686,7 +25683,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 37
                             },
-                            __self: undefined,
+                            __self: this,
                             children: "Action #"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
@@ -25699,7 +25696,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 38
                             },
-                            __self: undefined
+                            __self: this
                         })
                     ]
                 }),
@@ -25708,7 +25705,7 @@ _c = Form;
                         fileName: "src/components/Form.jsx",
                         lineNumber: 45
                     },
-                    __self: undefined,
+                    __self: this,
                     children: [
                         /*#__PURE__*/ _jsxRuntime.jsx("label", {
                             htmlFor: "user_name",
@@ -25716,7 +25713,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 46
                             },
-                            __self: undefined,
+                            __self: this,
                             children: "User name"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx("input", {
@@ -25729,7 +25726,7 @@ _c = Form;
                                 fileName: "src/components/Form.jsx",
                                 lineNumber: 47
                             },
-                            __self: undefined
+                            __self: this
                         })
                     ]
                 }),
@@ -25739,13 +25736,17 @@ _c = Form;
                         fileName: "src/components/Form.jsx",
                         lineNumber: 55
                     },
-                    __self: undefined,
+                    __self: this,
                     children: "Submit"
                 })
             ]
         })
     }));
-}var _c;
+}
+exports.default = Form;
+_s(Form, "ouTzcEauyTKASD6gCdlL8K94cV8=");
+_c = Form;
+var _c;
 $RefreshReg$(_c, "Form");
 
   $parcel$ReactRefreshHelpers$8966.postlude(module);
