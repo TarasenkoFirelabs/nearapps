@@ -1,69 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-class Form {
-  constructor({ onSubmit, currentUser, analitics }) {
-    this.state = analitics;
-  }
-
-  useState(analitics) {
-    this.state = analitics;
-
-    user_name.value = analitics.user_name;
-    app_id.value = analitics.app_id;
-    action_id.value = analitics.action_id;
-
-    fieldset.disabled = false;
-    user_name.focus();
-  }
-
-  render() {
-    return (
-      <form onSubmit={onSubmit}>
-        <fieldset id="fieldset">
-          <p>Sign into log analitics, {currentUser.accountId}!</p>
-          <p className="highlight">
-            <label htmlFor="user_name">User name</label>
-            <input
-              autoComplete="off"
-              autoFocus
-              id="user_name"
-              value="{ this.state.user_name }"
-              required />
-          </p>
-          <p>
-            <label htmlFor="app_id">App #</label>
-            <input
-              autoComplete="off"
-              autoFocus
-              id="app_id"
-              value="{ this.state.app_id }"
-              required />
-          </p>
-          <p>
-            <label htmlFor="action_id">Action #</label>
-            <input
-              autoComplete="off"
-              autoFocus
-              id="action_id"
-              value="{ this.state.action_id }"
-              required />
-          </p>
-          <button type="submit">
-            Submit
-          </button>
-        </fieldset>
-      </form>
-    );
-  }
-}
 
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   currentUser: PropTypes.shape({
     accountId: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired
+  }),
+  analytics: PropTypes.shape({
+    app_id: PropTypes.string.isRequired,
+    action_id: PropTypes.string.isRequired,
+    user_name: PropTypes.string.isRequired
   })
 };
 
-export default Form;
+export default function Form({ onSubmit, currentUser, analytics, disabled }) {
+  const [formData, setFormData] = useState(analytics);
+
+  const handleChange = (e) => {
+    setFormData(data => ({...data,
+      [e.target.name]: e.target.value
+    }))
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(formData)
+  }
+
+  useEffect(() => {
+    setFormData(analytics)
+  }, [analytics])
+
+  return (
+    <form>
+      <fieldset id="fieldset" disabled={disabled}>
+        <p>Sign into log analytics, {currentUser.accountId}!</p>
+        
+        <p>
+          <label htmlFor="app_id">App #</label>
+          <input
+            autoComplete="off"
+            autoFocus
+            name="app_id"
+            id="app_id"
+            value={ formData.app_id }
+            onChange={handleChange}
+            required />
+        </p>
+        <p>
+          <label htmlFor="action_id">Action #</label>
+          <input
+            autoComplete="off"
+            name="action_id"
+            id="action_id"
+            value={ formData.action_id }
+            onChange={handleChange}
+            required />
+        </p>
+        <p>
+          <label htmlFor="user_name">User name</label>
+          <input
+            autoComplete="off"
+            name="user_name"
+            id="user_name"
+            value={ formData.user_name }
+            onChange={handleChange}
+            required />
+        </p>
+
+        <button type="submit" onClick={handleSubmit}>
+          Submit
+        </button>
+      </fieldset>
+    </form>
+  );
+}
