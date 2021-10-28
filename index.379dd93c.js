@@ -22926,7 +22926,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","regenerator-runtime/runtime":"1EBPE","react":"4mchR","prop-types":"2bysO","./components/SignIn":"8Yzfb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./components/Form":"kTZ5h","buffer":"eKea5"}],"1EBPE":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","regenerator-runtime/runtime":"1EBPE","react":"4mchR","prop-types":"2bysO","./components/SignIn":"8Yzfb","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13","./components/Form":"kTZ5h","buffer":"bOetu"}],"1EBPE":[function(require,module,exports) {
 /**
  * Copyright (c) 2014-present, Facebook, Inc.
  *
@@ -24566,7 +24566,7 @@ $RefreshReg$(_c, "Form");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","prop-types":"2bysO","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"eKea5":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","prop-types":"2bysO","@parcel/transformer-js/src/esmodule-helpers.js":"ciiiV","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"9pz13"}],"bOetu":[function(require,module,exports) {
 /*!
  * The buffer module from node.js, for the browser.
  *
@@ -25966,7 +25966,7 @@ exports.write = function(buffer, value, offset, isLE, mLen, nBytes) {
 };
 
 },{}],"lnhM6":[function(require,module,exports) {
-const CONTRACT_NAME = 'tae.testnet'; /* TODO: change this to your account nino4ire */ 
+const CONTRACT_NAME = 'tae.testnet'; /* TODO: change this to your account */ 
 function getConfig(env) {
     switch(env){
         case 'mainnet':
@@ -29187,7 +29187,7 @@ function deserializeUnchecked(schema, classType, buffer) {
 }
 exports.deserializeUnchecked = deserializeUnchecked;
 
-},{"buffer":"eKea5","bn.js":"aqPWD","bs58":"eL66V","text-encoding-utf-8":"3jZsm"}],"aqPWD":[function(require,module,exports) {
+},{"buffer":"bOetu","bn.js":"aqPWD","bs58":"eL66V","text-encoding-utf-8":"3jZsm"}],"aqPWD":[function(require,module,exports) {
 (function(module, exports) {
     // Utils
     function assert(val, msg) {
@@ -32113,7 +32113,7 @@ SafeBuffer.allocUnsafeSlow = function(size) {
     return buffer.SlowBuffer(size);
 };
 
-},{"buffer":"eKea5"}],"3jZsm":[function(require,module,exports) {
+},{"buffer":"bOetu"}],"3jZsm":[function(require,module,exports) {
 'use strict';
 // This is free and unencumbered software released into the public domain.
 // See LICENSE.md for more information.
@@ -32984,7 +32984,7 @@ exports.Provider = Provider;
 }
 exports.getTransactionLastResult = getTransactionLastResult;
 
-},{"buffer":"eKea5"}],"jd8P9":[function(require,module,exports) {
+},{"buffer":"bOetu"}],"jd8P9":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 "use strict";
 var __importDefault = this && this.__importDefault || function(mod) {
@@ -33333,7 +33333,7 @@ let _nextId = 123;
 }
 exports.JsonRpcProvider = JsonRpcProvider;
 
-},{"buffer":"eKea5","depd":"ikBD4","./provider":"6PrrL","../utils/web":"7KqDe","../utils/errors":"2Z8Ir","borsh":"WrAXR","../utils/exponential-backoff":"j5hIE","../utils/rpc_errors":"1lOc9"}],"ikBD4":[function(require,module,exports) {
+},{"buffer":"bOetu","depd":"ikBD4","./provider":"6PrrL","../utils/web":"7KqDe","../utils/errors":"2Z8Ir","borsh":"WrAXR","../utils/exponential-backoff":"j5hIE","../utils/rpc_errors":"1lOc9"}],"ikBD4":[function(require,module,exports) {
 /*!
  * depd
  * Copyright(c) 2015 Douglas Christopher Wilson
@@ -35314,9 +35314,9 @@ async function signTransaction(...args) {
 }
 exports.signTransaction = signTransaction;
 
-},{"buffer":"eKea5","js-sha256":"59ogl","./utils/enums":"4Vcr8","borsh":"WrAXR","./utils/key_pair":"lGB9x"}],"59ogl":[function(require,module,exports) {
-var process = require("process");
+},{"buffer":"bOetu","js-sha256":"59ogl","./utils/enums":"4Vcr8","borsh":"WrAXR","./utils/key_pair":"lGB9x"}],"59ogl":[function(require,module,exports) {
 var global = arguments[3];
+var process = require("process");
 /**
  * [js-sha256]{@link https://github.com/emn178/js-sha256}
  *
@@ -36456,7 +36456,7 @@ function parseJsonFromRawResponse(response) {
 }
 exports.Account = Account;
 
-},{"buffer":"eKea5","bn.js":"aqPWD","depd":"ikBD4","./transaction":"cJtH9","./providers":"4aguU","borsh":"WrAXR","./utils/key_pair":"lGB9x","./utils/errors":"2Z8Ir","./utils/rpc_errors":"1lOc9","./utils/exponential-backoff":"j5hIE"}],"f9n4G":[function(require,module,exports) {
+},{"buffer":"bOetu","bn.js":"aqPWD","depd":"ikBD4","./transaction":"cJtH9","./providers":"4aguU","borsh":"WrAXR","./utils/key_pair":"lGB9x","./utils/errors":"2Z8Ir","./utils/rpc_errors":"1lOc9","./utils/exponential-backoff":"j5hIE"}],"f9n4G":[function(require,module,exports) {
 var Buffer = require("buffer").Buffer;
 'use strict';
 var __importDefault = this && this.__importDefault || function(mod) {
@@ -36763,7 +36763,7 @@ const convertActions = (actions, accountId, receiverId)=>actions.map((a)=>{
     })
 ;
 
-},{"buffer":"eKea5","bn.js":"aqPWD","./account":"hFy6d","./utils/format":"gw8M7","./utils/key_pair":"lGB9x","./transaction":"cJtH9","./utils/web":"7KqDe"}],"gpSMQ":[function(require,module,exports) {
+},{"buffer":"bOetu","bn.js":"aqPWD","./account":"hFy6d","./utils/format":"gw8M7","./utils/key_pair":"lGB9x","./transaction":"cJtH9","./utils/web":"7KqDe"}],"gpSMQ":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -37462,7 +37462,7 @@ exports.WalletAccount = WalletConnection;
 }
 exports.ConnectedWalletAccount = ConnectedWalletAccount;
 
-},{"buffer":"eKea5","depd":"ikBD4","./account":"hFy6d","./transaction":"cJtH9","./utils":"joIWm","borsh":"WrAXR"}],"7wN5N":[function(require,module,exports) {
+},{"buffer":"bOetu","depd":"ikBD4","./account":"hFy6d","./transaction":"cJtH9","./utils":"joIWm","borsh":"WrAXR"}],"7wN5N":[function(require,module,exports) {
 "use strict";
 Object.defineProperty(exports, "__esModule", {
     value: true
