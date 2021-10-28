@@ -25611,11 +25611,26 @@ Form.propTypes = {
 function Form({ onSubmit , currentUser , analytics , disabled  }) {
     _s();
     const [formData, setFormData] = _react.useState(analytics);
+    const handleChange = (e)=>{
+        setFormData((data)=>({
+                ...data,
+                [e.target.name]: e.target.value
+            })
+        );
+    };
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        onSubmit(formData);
+    };
+    _react.useEffect(()=>{
+        setFormData(analytics);
+    }, [
+        analytics
+    ]);
     return(/*#__PURE__*/ _jsxRuntime.jsx("form", {
-        onSubmit: onSubmit,
         __source: {
             fileName: "src/components/Form.jsx",
-            lineNumber: 22
+            lineNumber: 36
         },
         __self: this,
         children: /*#__PURE__*/ _jsxRuntime.jsxs("fieldset", {
@@ -25623,14 +25638,14 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
             disable: disabled,
             __source: {
                 fileName: "src/components/Form.jsx",
-                lineNumber: 23
+                lineNumber: 37
             },
             __self: this,
             children: [
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 24
+                        lineNumber: 38
                     },
                     __self: this,
                     children: [
@@ -25642,7 +25657,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 26
+                        lineNumber: 40
                     },
                     __self: this,
                     children: [
@@ -25650,7 +25665,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             htmlFor: "app_id",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 27
+                                lineNumber: 41
                             },
                             __self: this,
                             children: "App #"
@@ -25661,10 +25676,11 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             name: "app_id",
                             id: "app_id",
                             value: formData.app_id,
+                            onChange: handleChange,
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 28
+                                lineNumber: 42
                             },
                             __self: this
                         })
@@ -25673,7 +25689,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 36
+                        lineNumber: 51
                     },
                     __self: this,
                     children: [
@@ -25681,7 +25697,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             htmlFor: "action_id",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 37
+                                lineNumber: 52
                             },
                             __self: this,
                             children: "Action #"
@@ -25691,10 +25707,11 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             name: "action_id",
                             id: "action_id",
                             value: formData.action_id,
+                            onChange: handleChange,
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 38
+                                lineNumber: 53
                             },
                             __self: this
                         })
@@ -25703,7 +25720,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                 /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 45
+                        lineNumber: 61
                     },
                     __self: this,
                     children: [
@@ -25711,7 +25728,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             htmlFor: "user_name",
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 46
+                                lineNumber: 62
                             },
                             __self: this,
                             children: "User name"
@@ -25721,10 +25738,11 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                             name: "user_name",
                             id: "user_name",
                             value: formData.user_name,
+                            onChange: handleChange,
                             required: true,
                             __source: {
                                 fileName: "src/components/Form.jsx",
-                                lineNumber: 47
+                                lineNumber: 63
                             },
                             __self: this
                         })
@@ -25732,9 +25750,10 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
                     type: "submit",
+                    onClick: handleSubmit,
                     __source: {
                         fileName: "src/components/Form.jsx",
-                        lineNumber: 55
+                        lineNumber: 72
                     },
                     __self: this,
                     children: "Submit"
@@ -25744,7 +25763,7 @@ function Form({ onSubmit , currentUser , analytics , disabled  }) {
     }));
 }
 exports.default = Form;
-_s(Form, "ouTzcEauyTKASD6gCdlL8K94cV8=");
+_s(Form, "FlbydN5HiF3zuGzBFqk1rMMEJuk=");
 _c = Form;
 var _c;
 $RefreshReg$(_c, "Form");
