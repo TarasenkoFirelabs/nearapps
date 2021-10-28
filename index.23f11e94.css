@@ -40,22 +40,21 @@ body {
 }
 
 fieldset {
-  height: 50%;
   border: none;
   margin: 0;
   padding: 0;
 }
 
-input:focus {
+.highlight {
   align-items: center;
   display: flex;
   margin-bottom: 0.5em;
   width: 100%;
 }
-input:focus label {
+.highlight label {
   margin-right: 0.5em;
 }
-input:focus input {
+.highlight input {
   caret-color: var(--secondary);
 }
 
@@ -63,13 +62,13 @@ label {
   color: var(--gray);
 }
 
-button, input:focus {
+button, .highlight {
   border-radius: 5px;
   border-color: var(--primary);
   border: 0.1em solid var(--primary);
   padding: 0.5em 1em;
 }
-button:hover, button:focus, button:focus-within, input:focus:hover, input:focus:focus, input:focus:focus-within {
+button:hover, button:focus, button:focus-within, .highlight:hover, .highlight:focus, .highlight:focus-within {
   border-color: var(--secondary);
 }
 

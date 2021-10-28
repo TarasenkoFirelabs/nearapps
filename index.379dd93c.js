@@ -994,17 +994,25 @@ async function initContract() {
     };
 }
 window.nearInitPromise = initContract().then(({ contract , currentUser , nearConfig , walletConnection  })=>{
-    _reactDomDefault.default.render(/*#__PURE__*/ _jsxRuntime.jsx(_appDefault.default, {
-        contract: contract,
-        currentUser: currentUser,
-        nearConfig: nearConfig,
-        wallet: walletConnection,
-        __source: {
-            fileName: "src/index.js",
-            lineNumber: 48
-        },
-        __self: undefined
-    }), document.getElementById('root'));
+    contract.get_analytics().then((saved)=>{
+        let initData = typeof saved !== 'undefined' ? saved : {
+            app_id: 'Example App Log',
+            action_id: 'Example Action Log',
+            user_name: currentUser ? currentUser.accountId : 'Log SuperHero'
+        };
+        _reactDomDefault.default.render(/*#__PURE__*/ _jsxRuntime.jsx(_appDefault.default, {
+            contract: contract,
+            currentUser: currentUser,
+            initData: initData,
+            nearConfig: nearConfig,
+            wallet: walletConnection,
+            __source: {
+                fileName: "src/index.js",
+                lineNumber: 56
+            },
+            __self: undefined
+        }), document.getElementById('root'));
+    });
 });
 
   $parcel$ReactRefreshHelpers$6930.postlude(module);
@@ -22791,28 +22799,20 @@ var _signIn = require("./components/SignIn");
 var _signInDefault = parcelHelpers.interopDefault(_signIn);
 var Buffer = require("buffer").Buffer;
 var _s = $RefreshSig$();
-const App = ({ contract , currentUser , nearConfig , wallet  })=>{
+const App = ({ contract , currentUser , initData , nearConfig , wallet  })=>{
     _s();
-    const initData = {
-        app_id: 'Example App',
-        action_id: 'Example Action',
-        user_name: currentUser ? currentUser.accountId : 'SuperHero'
-    };
     const [analytics, setAnalytics] = _react.useState(initData);
     const [isSubmitting, setIsSubmitting] = _react.useState(false);
+    _react.useEffect(()=>{
+        // TODO: don't just fetch once; subscribe!
+        contract.get_analytics().then(setAnalytics);
+    }, []);
     function encode_utf8_base64(str) {
         return Buffer.from(str).toString('base64');
     }
     const encode64 = (formData)=>{
         return encode_utf8_base64(formData.app_id) + '_' + encode_utf8_base64(formData.action_id) + '_' + encode_utf8_base64(formData.user_name);
     };
-    _react.useEffect(()=>{
-        // TODO: don't just fetch once; subscribe!
-        contract.get_analytics().then((saved)=>{
-            console.log(saved);
-        });
-        contract.get_analytics().then(setAnalytics);
-    }, []);
     const onSubmit = (formData)=>{
         setIsSubmitting(true);
         // TODO: optimistically update page with new message,
@@ -22821,9 +22821,6 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
         contract.set_analytics({
             "encoded": encode64(formData)
         }).then(()=>{
-            contract.get_analytics().then((saved)=>{
-                console.log(saved);
-            });
             contract.get_analytics().then(setAnalytics);
             setIsSubmitting(false);
         });
@@ -22838,21 +22835,21 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs("main", {
         __source: {
             fileName: "src/App.js",
-            lineNumber: 65
+            lineNumber: 54
         },
         __self: undefined,
         children: [
             /*#__PURE__*/ _jsxRuntime.jsxs("header", {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 66
+                    lineNumber: 55
                 },
                 __self: undefined,
                 children: [
                     /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 67
+                            lineNumber: 56
                         },
                         __self: undefined,
                         children: "NEAR Log Analytics"
@@ -22861,7 +22858,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signOut,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 69
+                            lineNumber: 58
                         },
                         __self: undefined,
                         children: "Log out"
@@ -22869,7 +22866,7 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                         onClick: signIn,
                         __source: {
                             fileName: "src/App.js",
-                            lineNumber: 70
+                            lineNumber: 59
                         },
                         __self: undefined,
                         children: "Log in"
@@ -22883,13 +22880,13 @@ const App = ({ contract , currentUser , nearConfig , wallet  })=>{
                 disabled: isSubmitting,
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 74
+                    lineNumber: 63
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_signInDefault.default, {
                 __source: {
                     fileName: "src/App.js",
-                    lineNumber: 75
+                    lineNumber: 64
                 },
                 __self: undefined
             })
